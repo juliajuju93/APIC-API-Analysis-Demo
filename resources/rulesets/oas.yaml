@@ -1,0 +1,21 @@
+# Source: https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules
+#extends:
+#  - spectral:oas
+rules:
+  api-name-convention:
+    description: "API should always follow the following way 'APICenter-<nameofapi>'"
+    given: "$.info.title"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^APICenter-.*$"
+
+  api-version-convention:
+    description: "Every API version should follow the following way 'mm-dd-yyyy'"
+    given: "$.info.version"
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-(19|20)\\d\\d$"
